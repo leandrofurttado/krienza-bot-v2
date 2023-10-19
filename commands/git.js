@@ -23,7 +23,7 @@ const gitEmbed = new EmbedBuilder()
 		{ name: '$ git pull', value: 'Baixa o histórico e incorpora as mudanças', inline: true },
 	)
 
-
+//LOPES ESTÁ INDIGNADISSIMO
 //para exportar o comando
 module.exports = {
 data: new SlashCommandBuilder()

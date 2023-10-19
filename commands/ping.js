@@ -13,6 +13,3 @@ data: new SlashCommandBuilder()
         await interaction.reply('Pong!')
     }
 }
-
-
-//Leandro Lopes

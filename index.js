@@ -1,6 +1,11 @@
 
 const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 
+const { REST } = require("@discordjs/rest")
+const { Routes } = require("discord-api-types/v9")
+
+const { Player } = require("discord-player")
+
 //dotenv para proteger os dados importantes, como token, client e guild
 //que serão utilizados no login
 const dotenv = require('dotenv');
@@ -19,7 +24,10 @@ const commandsPath = path.join(__dirname, 'commands')
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'))
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildVoiceStates] });
 client.commands = new Collection()
 
 for (const file of commandFiles){
@@ -32,6 +40,12 @@ for (const file of commandFiles){
     }
 }
 
+client.player = new Player(client, {
+    ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+})
 
 //Login Bot
 client.once(Events.ClientReady, c => {

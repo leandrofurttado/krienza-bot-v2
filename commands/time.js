@@ -36,7 +36,7 @@ module.exports = {
       const infoTeam = response.data; // Coloque o objeto em um array
 
       //Quando a requisção manda para infoteam tudo é realizado
-      if(infoTeam){
+      if(infoTeam && teamID){
         //find no id que seleciona o objeto inteiro no qual ele pertence e armazena em timeEcontrado e podemos acessar os dados pertencentes
         const timeEncontrado = infoTeam.find(
             (equipe) => equipe.time.time_id === teamID
